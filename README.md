@@ -67,3 +67,18 @@ Discord ID : theloneinitiate
   
 Willing to entertain new command ideas if you have any just let me know on discord
 Please also report bugs to me on discord
+
+
+
+# Installation Details
+
+Make sure the following directory paths exists :
+res://logs
+res://scenes
+res://scripts/console
+res://scripts/console/commands
+
+
+
+To enable and disable auto save / auto load console logs you will need to edit the boolean in the main console.gd file.
+It's all very organized and easy to deal with.
