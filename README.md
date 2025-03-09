@@ -72,7 +72,7 @@ Please also report bugs to me on discord
 
 # Installation Details
 
-add console.gd to project settings -> autoload
+add console.tscn to project settings -> autoload
 
 Make sure the following directory paths exists :
 res://logs
