@@ -6,16 +6,15 @@ var console: Node  # Reference to DeveloperConsole
 const COMMAND_DESCRIPTIONS = {
 	"rcon_password": "Authenticate with a password for restricted commands",
 	"rcon_tree": "List nodes in the scene tree",
-	"print_vars": "Lists all variables of desired node (e.g., print vars Player)",
-	"clear": "Clear the console output",
 	"set": "Set a property on a node (e.g., set Player speed 500)",
+	"exit": "Exit the game",
 	"reload": "Reload the current scene",
 	"load_scene": "Load a new scene (e.g., load_scene Main)",
-	"inspect": "Show details of a node (e.g., inspect Player)",
-	"exec": "Run a script from res://scripts/executable/ (e.g., exec test hello)",
+	"clear": "Clear the console output",
 	"save_log": "Save console output to a log file (e.g., save_log mylog)",
 	"load_log": "Load a log file into the console (e.g., load_log mylog)",
-	"exit": "Exit the game"
+	"inspect": "Show details of a node (e.g., inspect Player)",
+	"exec": "Run a script from res://scripts/executable/ (e.g., exec test hello)"
 }
 
 func run(args: Array) -> void:

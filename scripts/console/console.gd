@@ -4,6 +4,9 @@ extends Control
 @onready var output: RichTextLabel = $Panel/Output
 @onready var panel: Panel = $Panel
 
+
+var ConsoleReady: bool
+var perf_hud: Node = null  # Tracks the profiling HUD instance
 var is_console_open: bool = false
 var is_authenticated: bool = false
 var command_history: Array[String] = []
@@ -35,6 +38,7 @@ func _ready() -> void:
 	previous_mouse_mode = Input.mouse_mode
 	load_commands()
 	DirAccess.make_dir_recursive_absolute(LOG_DIR)
+	ConsoleReady = true
 	if AUTO_LOAD:
 		load_most_recent_log()
 
