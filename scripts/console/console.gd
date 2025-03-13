@@ -20,8 +20,8 @@ var commands: Dictionary = {}
 const COMMANDS_DIR = "res://scripts/console/commands/"
 
 # Persistence settings
-const AUTO_SAVE: bool = false
-const AUTO_LOAD: bool = false
+const AUTO_SAVE: bool = true
+const AUTO_LOAD: bool = true
 const LOG_DIR = "res://logs/"
 var current_log_file: String = ""
 
@@ -51,6 +51,12 @@ func _input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 		elif event.keycode == KEY_TAB:
 			complete_command()
+			get_viewport().set_input_as_handled()
+		elif event.keycode == KEY_ESCAPE and awaiting_selection:
+			# Cancel awaiting selection state
+			awaiting_selection = false
+			is_subtree_mode = false
+			add_output("Selection cancelled.")
 			get_viewport().set_input_as_handled()
 	elif event is InputEventMouseButton and is_console_open:
 		var v_scroll = output.get_v_scroll_bar()

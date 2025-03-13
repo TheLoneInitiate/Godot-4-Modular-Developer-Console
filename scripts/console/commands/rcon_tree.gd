@@ -23,7 +23,8 @@ func print_scene_tree() -> void:
 			line += " [color=aqua](Instance)[/color]"
 		output += line + "\n"
 	
-	output += "Enter the index of a node to view its subtree (e.g., '1'):"
+	output += "Enter the index of a node to view its subtree (e.g., '1'):\n"
+	output += "You can also use the ESC key to close the tree."
 	console.add_output(output)
 	console.awaiting_selection = true
 
@@ -40,7 +41,8 @@ func print_node_subtree(node: Node) -> void:
 			line += " [color=aqua](Instance)[/color]"
 		output += line + "\n"
 	
-	output += "Enter the index of a node to view its subtree (e.g., '0'):"
+	output += "Enter the index of a node to view its subtree (e.g., '0'):\n"
+	output += "You can also use the ESC key to close the tree."
 	console.add_output(output)
 	console.awaiting_selection = true
 
