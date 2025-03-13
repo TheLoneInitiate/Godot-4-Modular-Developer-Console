@@ -72,6 +72,8 @@ Please also report bugs to me on discord
 
 # Installation Details
 
+add console.tscn to project settings -> autoload
+
 Make sure the following directory paths exists :
 res://logs
 res://scenes
