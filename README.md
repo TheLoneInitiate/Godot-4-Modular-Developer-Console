@@ -64,7 +64,7 @@ _closes the game with get_tree().quit()_
 **- help**
 _displays a list of all commands and their descriptions_  
 
-**=Perf**
+**= Perf**
 _Displays performance stats_
   
   
