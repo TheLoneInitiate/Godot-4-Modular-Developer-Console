@@ -36,6 +36,9 @@ _Set a property value to any node (e.g : set player speed 500.0 )_
 **- inspect**
 Get inspector info on any ;node in the scene (e.g : see screenshots )
 
+**-list_groups** 
+_displays list of groups of a specific node_
+
 **- exec**
 _execute any script on command_ _inside of directory : /scripts/executable/example.gd_
 
@@ -60,6 +63,9 @@ _closes the game with get_tree().quit()_
 
 **- help**
 _displays a list of all commands and their descriptions_  
+
+**=Perf**
+_Displays performance stats_
   
   
 **Contact info :**  
