@@ -36,6 +36,9 @@ _Set a property value to any node (e.g : set player speed 500.0 )_
 **- inspect**
 Get inspector info on any ;node in the scene (e.g : see screenshots )
 
+**- debug_collision**
+Toggles a custom draw for collision shapes of 2D and 3D objects.
+
 **- list_groups** 
 _displays list of groups of a specific node_
 
