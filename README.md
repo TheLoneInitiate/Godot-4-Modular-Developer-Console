@@ -81,7 +81,7 @@ Please also report bugs to me on discord
 
 # Installation Details
 
-Add the console.tscn to the scene and position it to your liking.
+Add the console.tscn to autoloader with the name DeveloperConsole
 
 Make sure the following directory paths exists :
 res://logs
