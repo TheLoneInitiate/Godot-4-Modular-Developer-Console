@@ -2,29 +2,33 @@ extends Node
 
 var console: Node  # Reference to DeveloperConsole
 var debug_rays = []  # Track debug visuals
-var target_node: Node = null  # Track the node we're visualizing
+var target_node: Node = null  # Track the node we're visualizing (for specific node mode)
 
 func run(args: Array) -> void:
 	if args.size() < 2:
-		console.add_output("Usage: toggle_raycasts <node_name>")
+		console.add_output("Usage: toggle_raycasts <all | node_name>")
 		return
 	
-	var node_name = args[1]
-	var root = console.get_node("/root")
-	target_node = find_node_by_name(root, node_name)
-	
-	if not target_node:
-		console.add_output("Node '" + node_name + "' not found in the scene tree.")
-		return
-	
+	var target = args[1].to_lower()
 	var current_state = not debug_rays.is_empty()  # If debug rays exist, visibility is "on"
 	var new_state = not current_state
 	
 	if new_state:
 		# Enable: Add debug visuals and register for updates
-		var raycasts = find_raycasts(target_node)
+		var raycasts = []
+		if target == "all":
+			raycasts = find_raycasts(console.get_node("/root"))
+			target_node = null  # No specific node when targeting all
+		else:
+			var root = console.get_node("/root")
+			target_node = find_node_by_name(root, target)
+			if not target_node:
+				console.add_output("Node '" + target + "' not found in the scene tree.")
+				return
+			raycasts = find_raycasts(target_node)
+		
 		if raycasts.is_empty():
-			console.add_output("No raycasts found under '" + node_name + "'.")
+			console.add_output("No raycasts found" + (" in '" + target + "'" if target != "all" else " in the scene tree") + ".")
 			return
 		
 		for ray in raycasts:
@@ -35,7 +39,7 @@ func run(args: Array) -> void:
 				debug_node.owner = ray.owner
 		
 		console.register_active_command(self)
-		console.add_output("Raycast visibility: [color=green]ON[/color] (" + str(debug_rays.size()) + " rays)")
+		console.add_output("Raycast visibility: [color=green]ON[/color] (" + str(debug_rays.size()) + " rays)" + (" for '" + target + "'" if target != "all" else ""))
 	else:
 		# Disable: Remove debug visuals and unregister
 		for node in debug_rays:
@@ -44,10 +48,13 @@ func run(args: Array) -> void:
 		debug_rays.clear()
 		target_node = null
 		console.unregister_active_command(self)
-		console.add_output("Raycast visibility: [color=green]OFF[/color]")
+		console.add_output("Raycast visibility: [color=green]OFF[/color]" + (" for '" + target + "'" if target != "all" else ""))
 
 func update(delta: float) -> void:
-	if not is_instance_valid(target_node) or debug_rays.is_empty():
+	if debug_rays.is_empty():
+		console.unregister_active_command(self)
+		return
+	if target_node != null and not is_instance_valid(target_node):
 		console.unregister_active_command(self)
 		return
 	
@@ -76,7 +83,7 @@ func update(delta: float) -> void:
 		i += 1
 
 func find_node_by_name(node: Node, name: String) -> Node:
-	if node.name.to_lower() == name.to_lower():
+	if node.name.to_lower() == name:
 		return node
 	for child in node.get_children():
 		var found = find_node_by_name(child, name)
