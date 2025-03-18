@@ -36,11 +36,13 @@ _Set a property value to any node (e.g : set player speed 500.0 )_
 **- inspect**
 Get inspector info on any ;node in the scene (e.g : see screenshots )
 
-**- debug_collision**
+**- debug_collision <nodename> or <all>**
 Toggles a custom draw for collision shapes of 2D and 3D objects.
+Support 2 arguments for all nodes or specific node
 
-**- debug_node <nodename>**
+**- debug_raycast <nodename> or <all>**
 Draws raycasts within a node and changes color when its colliding.
+Support 2 arguments for all nodes or specific node
 
 **- list_groups** 
 _displays list of groups of a specific node_
