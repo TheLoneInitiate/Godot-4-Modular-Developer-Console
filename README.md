@@ -36,6 +36,9 @@ _Set a property value to any node (e.g : set player speed 500.0 )_
 **- inspect**
 Get inspector info on any ;node in the scene (e.g : see screenshots )
 
+**- debug_collision**
+Toggles a custom draw for collision shapes of 2D and 3D objects.
+
 **- list_groups** 
 _displays list of groups of a specific node_
 
@@ -78,7 +81,7 @@ Please also report bugs to me on discord
 
 # Installation Details
 
-add console.tscn to project settings -> autoload
+Add the console.tscn to the scene and position it to your liking.
 
 Make sure the following directory paths exists :
 res://logs
@@ -86,6 +89,8 @@ res://scenes
 res://scripts/console
 res://scripts/console/commands
 
+If you're having issues, make sure to check for capital letters in the directory listings.
+all the directories use lowercase letters.
 
 
 To enable and disable auto save / auto load console logs you will need to edit the boolean in the main console.gd file.
