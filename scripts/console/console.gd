@@ -4,7 +4,6 @@ extends Control
 @onready var output: RichTextLabel = $Panel/Output
 @onready var panel: Panel = $Panel
 
-
 var ConsoleReady: bool
 var perf_hud: Node = null  # Tracks the profiling HUD instance
 var is_console_open: bool = false
@@ -20,7 +19,7 @@ var is_subtree_mode: bool = false
 var previous_mouse_mode: int = Input.MOUSE_MODE_CAPTURED
 
 var commands: Dictionary = {}
-const COMMANDS_DIR = "res://scripts/console/commands/"
+const COMMANDS_DIR = "res://Scripts/console/commands/"
 
 # Persistence settings
 const AUTO_SAVE: bool = true
@@ -33,6 +32,13 @@ var completion_matches: Array[String] = []
 var completion_index: int = -1
 
 func _ready() -> void:
+	# Position the console at top-left of viewport
+	anchor_left = 0.0
+	anchor_top = 0.0
+	anchor_right = 0.0  # Keep fixed size; set to 1.0 to stretch
+	anchor_bottom = 0.0
+	position = Vector2(0, 0)  # Top-left corner
+	
 	panel.visible = false
 	input.connect("text_submitted", _on_input_submitted)
 	previous_mouse_mode = Input.mouse_mode
@@ -57,7 +63,6 @@ func _input(event: InputEvent) -> void:
 			complete_command()
 			get_viewport().set_input_as_handled()
 		elif event.keycode == KEY_ESCAPE and awaiting_selection:
-			# Cancel awaiting selection state
 			awaiting_selection = false
 			is_subtree_mode = false
 			add_output("Selection cancelled.")
@@ -260,12 +265,12 @@ func load_most_recent_log() -> void:
 			var file = FileAccess.open(latest_file, FileAccess.READ)
 			if file:
 				output.clear()
-				output.append_text("Loaded log: " + latest_file.get_file() + "\n")  # Message first
+				output.append_text("Loaded log: " + latest_file.get_file() + "\n")
 				while not file.eof_reached():
 					var line = file.get_line()
 					if not line.is_empty():
 						output.append_text(line + "\n")
 				file.close()
-				output.scroll_to_line(output.get_line_count() - 1)  # Scroll to bottom
+				output.scroll_to_line(output.get_line_count() - 1)
 	else:
 		add_output("No logs found in " + LOG_DIR)

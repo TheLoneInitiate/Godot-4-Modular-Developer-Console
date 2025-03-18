@@ -10,7 +10,7 @@ func run(args: Array) -> void:
 		console.add_output("Performance HUD disabled.")
 	else:
 		# Turn on performance HUD
-		console.perf_hud = preload("res://scenes/perf_hud.tscn").instantiate()
+		console.perf_hud = preload("res://Scenes/perf_hud.tscn").instantiate()
 		console.get_node("/root").add_child(console.perf_hud)
 		console.perf_hud.owner = console.get_node("/root")
 		console.add_output("Performance HUD enabled. Stats displayed on screen.")

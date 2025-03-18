@@ -1,28 +1,30 @@
 [gd_scene load_steps=2 format=3 uid="uid://dp7u6flk2j8x1"]
 
-[ext_resource type="Script" uid="uid://bvqbf2lv2eil" path="res://scripts/console/console.gd" id="1_gf67r"]
+[ext_resource type="Script" uid="uid://cv61lpih816h3" path="res://Scripts/console/console.gd" id="1_gf67r"]
 
-[node name="Console" type="Control"]
+[node name="ConsoleLayer" type="CanvasLayer"]
+
+[node name="ConsoleControl" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-mouse_filter = 1
+offset_right = 40.0
+offset_bottom = 40.0
 script = ExtResource("1_gf67r")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="ConsoleControl"]
 unique_name_in_owner = true
-layout_mode = 0
 offset_right = 443.0
 offset_bottom = 250.0
 mouse_filter = 1
 
-[node name="Output" type="RichTextLabel" parent="Panel"]
+[node name="Output" type="RichTextLabel" parent="ConsoleControl/Panel"]
 layout_mode = 0
 offset_right = 443.0
 offset_bottom = 250.0
 mouse_filter = 1
 vertical_alignment = 3
 
-[node name="Input" type="LineEdit" parent="Panel"]
+[node name="Input" type="LineEdit" parent="ConsoleControl/Panel"]
 layout_mode = 0
 offset_top = 250.0
 offset_right = 443.0
