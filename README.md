@@ -39,6 +39,9 @@ Get inspector info on any ;node in the scene (e.g : see screenshots )
 **- debug_collision**
 Toggles a custom draw for collision shapes of 2D and 3D objects.
 
+**- debug_node <nodename>**
+Draws raycasts within a node and changes color when its colliding.
+
 **- list_groups** 
 _displays list of groups of a specific node_
 
