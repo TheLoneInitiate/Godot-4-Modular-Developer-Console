@@ -21,9 +21,11 @@ var previous_mouse_mode: int = Input.MOUSE_MODE_CAPTURED
 var commands: Dictionary = {}
 const COMMANDS_DIR = "res://Scripts/console/commands/"
 
+var active_commands: Array[Object] = []  # Tracks commands using the update() function to ensure they stay running
+
 # Persistence settings
-const AUTO_SAVE: bool = true
-const AUTO_LOAD: bool = true
+const AUTO_SAVE: bool = false
+const AUTO_LOAD: bool = false
 const LOG_DIR = "res://logs/"
 var current_log_file: String = ""
 
@@ -47,6 +49,13 @@ func _ready() -> void:
 	ConsoleReady = true
 	if AUTO_LOAD:
 		load_most_recent_log()
+	set_physics_process(true)  # Enable physics processing for updates
+
+func _physics_process(delta: float) -> void:
+	if not active_commands.is_empty():
+		for cmd in active_commands:
+			if cmd and cmd.has_method("update"):
+				cmd.update(delta)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and event.keycode == KEY_QUOTELEFT:
@@ -93,6 +102,14 @@ func toggle_console() -> void:
 		completion_matches.clear()
 		completion_index = -1
 		Input.mouse_mode = previous_mouse_mode
+
+func register_active_command(command: Object) -> void:
+	if command and command.has_method("update") and not active_commands.has(command):
+		active_commands.append(command)
+
+func unregister_active_command(command: Object) -> void:
+	if active_commands.has(command):
+		active_commands.erase(command)
 
 func _on_input_submitted(text: String) -> void:
 	var trimmed_text = text.strip_edges()
