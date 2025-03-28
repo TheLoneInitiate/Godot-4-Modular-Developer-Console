@@ -86,13 +86,14 @@ Please also report bugs to me on discord
 
 # Installation Details
 
-Add the console.tscn to autoloader with the name DeveloperConsole
+Add extract the addons folder into the root res:// directory.
+It will then automatically set the console.tscn as an autoload singleton in your project settings.
+To test it, launch your project and use the ` key to open the console.
 
 Make sure the following directory paths exists :
-res://logs
+res://addons/ModularDevConsole/logs
+res://addons/ModularDevConsole/commands
 res://scenes
-res://scripts/console
-res://scripts/console/commands
 
 If you're having issues, make sure to check for capital letters in the directory listings.
 all the directories use lowercase letters.
