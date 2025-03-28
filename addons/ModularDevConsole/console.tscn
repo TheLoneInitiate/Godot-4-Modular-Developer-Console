@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dp7u6flk2j8x1"]
 
-[ext_resource type="Script" uid="uid://cv61lpih816h3" path="res://Scripts/console/console.gd" id="1_gf67r"]
+[ext_resource type="Script" uid="uid://thpf4j486046" path="res://addons/ModularDevConsole/console.gd" id="1_hdhud"]
 
 [node name="ConsoleLayer" type="CanvasLayer"]
 
@@ -9,10 +9,11 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_gf67r")
+script = ExtResource("1_hdhud")
 
 [node name="Panel" type="Panel" parent="ConsoleControl"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_right = 443.0
 offset_bottom = 250.0
 mouse_filter = 1

@@ -19,14 +19,14 @@ var is_subtree_mode: bool = false
 var previous_mouse_mode: int = Input.MOUSE_MODE_CAPTURED
 
 var commands: Dictionary = {}
-const COMMANDS_DIR = "res://Scripts/console/commands/"
+const COMMANDS_DIR = "res://addons/ModularDevConsole/commands/"  # Updated for addon
 
 var active_commands: Array[Object] = []  # Tracks commands using the update() function to ensure they stay running
 
 # Persistence settings
 const AUTO_SAVE: bool = false
 const AUTO_LOAD: bool = false
-const LOG_DIR = "res://logs/"
+const LOG_DIR = "user://modular_dev_console_logs/"  # Updated to user directory
 var current_log_file: String = ""
 
 # Tab completion state
@@ -50,6 +50,7 @@ func _ready() -> void:
 	if AUTO_LOAD:
 		load_most_recent_log()
 	set_physics_process(true)  # Enable physics processing for updates
+	set_process_input(true)  # Added to ensure _input() works
 
 func _physics_process(delta: float) -> void:
 	if not active_commands.is_empty():
