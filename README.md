@@ -90,6 +90,8 @@ Add extract the addons folder into the root res:// directory.
 It will then automatically set the console.tscn as an autoload singleton in your project settings.
 To test it, launch your project and use the ` key to open the console.
 
+If you get an annoying warning about console.tscn uid, just go to addons/ModularDevConsole/ and open the console.tscn then cntrl+s save and reload the project. It will stop giving the warning.
+
 Make sure the following directory paths exists :
 res://addons/ModularDevConsole/logs
 res://addons/ModularDevConsole/commands
