@@ -7,7 +7,7 @@ _**A simple and effective in-game console designed for easily adding or removing
 - **Command System**: Modular commands stored as GDScript files in `res://Addons/ModularDevConsole/commands/`.
 - **Tab Completion**: Autocomplete commands and arguments (e.g., node names, scene names).
 - **Command History**: Navigate previous commands with Up/Down arrow keys.
-- **Logging**: Optional auto-saving of console output to logs in `user://modular_dev_console_logs/`.
+- **Logging**: Optional auto-saving of console output to logs in `res://logs`.
 - **Authentication**: Secure commands with `rcon_password` for sensitive operations.
 - **Scene Tree Inspection**: View and navigate the scene tree with `rcon_tree`.
 - **Debug Visuals**: Toggle visibility for collision shapes, raycasts, and tilemap grids.
