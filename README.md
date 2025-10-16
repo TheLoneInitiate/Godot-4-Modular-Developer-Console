@@ -2,7 +2,54 @@
 
 _**A simple and effective in-game console designed for easily adding or removing new console commands. Our modular approach will suit all your needs.**_  
   
-**Default toggle key : " ~ "**  
+## Features
+- **Toggleable Console**: Open/close with the backtick (`) key.
+- **Command System**: Modular commands stored as GDScript files in `res://Addons/ModularDevConsole/commands/`.
+- **Tab Completion**: Autocomplete commands and arguments (e.g., node names, scene names).
+- **Command History**: Navigate previous commands with Up/Down arrow keys.
+- **Logging**: Optional auto-saving of console output to logs in `user://modular_dev_console_logs/`.
+- **Authentication**: Secure commands with `rcon_password` for sensitive operations.
+- **Scene Tree Inspection**: View and navigate the scene tree with `rcon_tree`.
+- **Debug Visuals**: Toggle visibility for collision shapes, raycasts, and tilemap grids.
+- **Script Execution**: Run custom GDScript files with `exec`.
+- **Node Manipulation**: Inspect and modify node properties and call methods dynamically.
+
+## Usage
+- **Open Console**: Press the backtick (`) key to toggle the console.
+- **Enter Commands**: Type a command and press Enter to execute.
+- **Navigate History**: Use Up/Down arrow keys to cycle through command history.
+- **Tab Completion**: Press Tab to autocomplete commands or arguments.
+- **Scroll Output**: Use mouse wheel to scroll through console output.
+- **Secure Commands**: Use `rcon_password <password>` to authenticate for restricted commands (default password: `gaben`).
+- **Cancel Selection**: Press Escape to cancel node selection in `rcon_tree`.
+
+| Command | Description | Usage | Notes |
+|---------|-------------|-------|-------|
+| `call` | Calls a method on a node with optional arguments. | `call <node_name_or_path> <method_name> [args...]` | Supports up to 3 arguments; closes console on success. |
+| `clear` | Clears the console output. | `clear` | Simple command to reset the output display. |
+| `debug_collision` | Toggles visibility of collision shapes for a node or all nodes. | `debug_collision <all | node_name>` | Visualizes 2D/3D collision shapes in green (on) or removes them (off). |
+| `debug_grid` | Toggles a debug grid overlay on a `TileMapLayer`. | `toggle_grid [on|off|toggle]` | Draws a white grid over the visible tilemap area; requires a `TileMapLayer` and active `Camera2D`. |
+| `debug_raycast` | Toggles visibility of raycasts for a node or all nodes. | `toggle_raycasts <all | node_name>` | Visualizes rays as yellow (no collision) or red (collision); updates in real-time. |
+| `exec` | Executes a GDScript file from `res://Scripts/`. | `exec <filename> [args...]` | Runs `run()` method if present; supports `.gd` extension omission. |
+| `exit` | Closes the game. | `exit` | Terminates the application. |
+| `inspect` | Displays details about a node (path, parent, position, children, etc.). | `inspect <node_name>` | Shows properties like position, rotation, and custom attributes (e.g., `speed`, `health`). |
+| `list_groups` | Lists groups a node belongs to. | `list_groups <node_name>` | Outputs all groups for the specified node. |
+| `load_scene` | Loads a scene from `res://scenes/`. | `load_scene <scene_name>` | Lists available scenes if no name provided; requires `.tscn` files. |
+| `print_vars` | Prints exported variables of a node. | `print_vars <node_name>` | Requires `rcon_password` authentication. |
+| `rcon_password` | Authenticates for restricted commands. | `rcon_password <password>` | Default password: `gaben`. |
+| `rcon_tree` | Displays the scene tree and allows subtree inspection. | `rcon_tree` | Requires authentication; enter node index to view subtrees, Escape to cancel. |
+| `reload` | Reloads the current scene. | `reload` | Requires authentication. |
+| `save_log` | Saves console output to a log file. | `save_log [filename]` | Saves to `user://modular_dev_console_logs/`; defaults to timestamped filename. |
+| `profile` | Manages performance profiling and tile counts. | `profile <on|off|stats|tiles> [chunk_x chunk_y]` | Toggles performance HUD, shows memory/draw calls, or counts tiles by type/group. |
+
+### Adding Custom Commands
+1. Create a new GDScript in `res://Addons/ModularDevConsole/commands/` (e.g., `my_command.gd`).
+2. Extend `Node` and implement a `run(args: Array)` method:
+   ```gdscript
+   extends Node
+   var console: Node
+   func run(args: Array) -> void:
+       console.add_output("My custom command with args: " + str(args))
   
 The main console script `res://scripts/console.gd` scans a commands folder which holds a separate script file for each individual command. Making it extremely easy to add or remove commands without needing to modify the main console script.  
 ![enter image description here](https://i.imgur.com/74pd5M1.png)
