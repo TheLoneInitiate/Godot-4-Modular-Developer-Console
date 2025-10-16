@@ -50,6 +50,17 @@ _**A simple and effective in-game console designed for easily adding or removing
    var console: Node
    func run(args: Array) -> void:
        console.add_output("My custom command with args: " + str(args))
+
+3. Creating a command that runs continuosly in the process :
+   ```gdscript
+   extends Node
+   var console: Node
+   
+   func run(args: Array) -> void:
+       console.add_output("My custom command with args: " + str(args))
+       print("The run function will call this code 1 time only")
+   func update(delta: float) -> void:
+     print("This will print every frame until the command it toggled off")
   
 The main console script `res://scripts/console.gd` scans a commands folder which holds a separate script file for each individual command. Making it extremely easy to add or remove commands without needing to modify the main console script.  
 ![enter image description here](https://i.imgur.com/74pd5M1.png)
